@@ -3,6 +3,14 @@
 
 With this gem you can check a user-agent is compatible with `SameSite:none` cookie.
 
+## Background
+
+With Chrome 80 in February 2020, Chrome will treat cookies that have no declared SameSite value as `SameSite=Lax` cookies. Other browser vendors are expected to follow Google’s lead. (See this [Blog Post](https://blog.chromium.org/2019/10/developers-get-ready-for-new.html)).
+
+If you manage cross-site cookies, you will need to apply the SameSite=None; Secure setting to those cookies. However, some browsers, including some versions of Chrome, Safari and UC Browser, might handle the None value in unintended ways, requiring developers to code exceptions for those clients.
+
+`isSameSiteNoneCompatible` utility function detects incompatible user agents based on a [list of known incompatible clients](https://www.chromium.org/updates/same-site/incompatible-clients) and returns `true` if the given user-agent string is compatible with `SameSite=None` cookie attribute.
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -23,6 +31,7 @@ Or install it yourself as:
 
 This gem was originally created to check on Ruby on Rails redis session store, if we can pass same_site or not for ex:
 
+Look code at: https://github.com/semoal/redis-actionpack
 ```ruby
 # redis-action-pack gem
 def set_cookie(env, _session_id, cookie)
@@ -56,3 +65,9 @@ The gem is available as open source under the terms of the [MIT License](https:/
 ## Code of Conduct
 
 Everyone interacting in the ShouldSendSameSiteNone project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/should_send_same_site_none/blob/master/CODE_OF_CONDUCT.md).
+
+## Intersting links
+
+- [JS Package](https://github.com/linsight/should-send-same-site-none)
+- [Ruby on Rails Session Store with this logic, for avoiding problems on rails app](https://github.com/semoal/redis-actionpack)
+
