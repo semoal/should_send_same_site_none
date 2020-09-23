@@ -1,8 +1,7 @@
+![Ruby Gem CI](https://github.com/semoal/should_send_same_site_none/workflows/Ruby%20Gem%20CI/badge.svg?branch=master)
 # ShouldSendSameSiteNone
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/should_send_same_site_none`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+With this gem you can check a user-agent is compatible with `SameSite:none` cookie.
 
 ## Installation
 
@@ -22,7 +21,22 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+This gem was originally created to check on Ruby on Rails redis session store, if we can pass same_site or not for ex:
+
+```ruby
+# redis-action-pack gem
+def set_cookie(env, _session_id, cookie)
+    request = wrap_in_request(env)
+    if (request.user_agent.present? && ShouldSendSameSiteNone.is_same_site_compatible(value))
+        if (cookie[:same_site].present? && cookie[:same_site] == :none)
+            cookie.delete(:same_site)
+        end
+        cookie_jar(request)[key] = cookie.merge(cookie_options)
+    else
+        cookie_jar(request)[key] = cookie.merge(cookie_options)
+    end
+end
+```
 
 ## Development
 
