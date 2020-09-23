@@ -23,10 +23,11 @@ jobs:
       uses: actions/setup-ruby@v1
       with:
         ruby-version: 2.6.x
-        
+
     - name: Test
       run: |
         gem install bundler
+        bundle install
         rake spec
 
     - name: Publish to GPR
