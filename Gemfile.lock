@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    should_send_same_site_none (0.1.0)
+    should_send_same_site_none (0.1.1)
 
 GEM
   remote: https://rubygems.org/

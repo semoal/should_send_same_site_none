@@ -73,7 +73,7 @@ module ShouldSendSameSiteNone
     major_version = extract_regex_match(user_agent, regex, 1).to_i
     minor_version = extract_regex_match(user_agent, regex, 2).to_i
     build_version = extract_regex_match(user_agent, regex, 3).to_i
-    if (major_version == major)
+    if (major_version != major)
       return major_version > major
     end
 

@@ -1,5 +1,9 @@
 RSpec.describe ShouldSendSameSiteNone do
   positive_cases = {
+    "UC Browser 12.13.2 @ Android":
+    "Mozilla/5.0 (Linux; U; Android 8.0.0; en-US; Pixel XL Build/OPR3.170623.007) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 UCBrowser/12.13.2.1005 U3/0.8.0 Mobile Safari/534.30",
+    "UC Browser 12.13.4 @ Android":
+    "Mozilla/5.0 (Linux; U; Android 8.0.0; en-US; Pixel XL Build/OPR3.170623.007) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 UCBrowser/12.13.4.1005 U3/0.8.0 Mobile Safari/534.30",
     "Chrome 50 @ Win10":
       "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36",
     "Chrome 67 @ Win10":
@@ -73,7 +77,7 @@ RSpec.describe ShouldSendSameSiteNone do
     expect(ShouldSendSameSiteNone::VERSION).not_to be nil
   end
 
-  describe 'positive cases' do
+  describe 'Compatible browsers' do
     positive_cases.each do |key, value|
       it "#{key}" do
         expect(ShouldSendSameSiteNone.is_same_site_compatible(value)).to be(true)
@@ -81,7 +85,7 @@ RSpec.describe ShouldSendSameSiteNone do
     end
   end
 
-  describe 'negative cases' do
+  describe 'Incompatible browsers' do
     negative_cases.each do |key, value|
       it "#{key}" do
         expect(ShouldSendSameSiteNone.is_same_site_compatible(value)).to be(false)
